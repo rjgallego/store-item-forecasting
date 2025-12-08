@@ -1,0 +1,4 @@
+shell
+
+pandas>=2.0
+pandera>=0.18

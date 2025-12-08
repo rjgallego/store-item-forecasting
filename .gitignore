@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.joblib
+
+# Virtual environment
+venv/
+.venv/
+
+# Data folders
+data/raw/
+data/processed/
+data/external/
+
+# Models
+models/
+reports/*.csv
+reports/*.json
+
+# VSCode
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
