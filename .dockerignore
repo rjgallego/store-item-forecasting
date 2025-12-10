@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+venv/
+.venv/
+
+# Big or local-only stuff
+data/raw/
+# (Optionally also ignore processed if you *don't* want them baked in)
+# data/processed/
+
+models/
+reports/
+
+.vscode/
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
