@@ -23,4 +23,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Default command: show help for the CLI
-CMD ["python", "-m", "src.models.predict_catboost", "--help"]
+ENTRYPOINT [ "python", "-m", "src.models.predict_catboost" ]
