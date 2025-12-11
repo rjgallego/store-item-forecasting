@@ -30,29 +30,23 @@ forecast-studio/
 
 │
 
-├── models/
-
-│   └── catboost_baseline.pkl   # Saved model artifacts (ignored by Git)
+├── models/  # Stores model after training
 
 │
 
-├── reports/
-
-│   ├── backtest_rolling_windows.csv
-
-│   ├── backtest_catboost_rolling_windows.csv
-
-│   └── predictions.csv        # Saved forecast outputs
+├── reports/ # Will be created when running backtests / basline to store prediction outputs
 
 │
 
 ├── src/
 
+│   ├── data/
+
+│   │   ├── schema.py          # Pandera schemas for raw & processed data
+
 │   ├── features/
 
 │   │   ├── config.py              # Global configuration paths & constants
-
-│   │   ├── schema.py          # Pandera schemas for raw & processed data
 
 │   │   ├── make_features.py   # Main feature engineering pipeline
 
@@ -60,9 +54,15 @@ forecast-studio/
 
 │   ├── models/
 
-│   │   ├── baseline.py        # LightGBM training logic
+│   │   ├── baseline_helpers.py        # Helper functions to reduce redundancy
 
-│   │   ├── catboost_baseline.py
+│   │   ├── lightgbm_baseline.py        # LightGBM training logic
+
+│   │   ├── catboost_baseline.py        # Catboost training logic
+
+│   │   └── train_catboost.py # Train Catboost model (produces models/baseline_catboost.pkl file)
+
+│   │   └── train_lightgbm.py # Train LightGBM model (produces models/baseline_lightgbm.pkl file)
 
 │   │   └── predict_catboost.py # CLI prediction tool
 
@@ -70,9 +70,11 @@ forecast-studio/
 
 │   ├── eval/
 
-│   │   ├── backtest.py        # Rolling-origin backtesting (LightGBM)
+│   │   ├── backtest_lightgbm.py        # Rolling-origin backtesting (LightGBM)
 
-│   │   └── backtest_catboost.py
+│   │   └── backtest_catboost.py        # Rolling-origin backtesting (CatBoost)
+
+│   │   └── backtest_helpers.py        # helper functions to reduce redundancy
 
 │
 
@@ -98,6 +100,8 @@ forecast-studio/
 *python -m venv venv*
 
 *source venv/bin/activate*      # Mac/Linux
+
+OR 
 
 *venv\Scripts\activate*         # Windows
 
