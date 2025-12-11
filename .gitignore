@@ -10,13 +10,7 @@ __pycache__/
 venv/
 .venv/
 
-# Data folders
-data/raw/
-data/processed/
-data/external/
-
-# Models
-models/
+# Reports
 reports/*.csv
 reports/*.json
 
