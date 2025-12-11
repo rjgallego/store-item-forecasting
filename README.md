@@ -89,25 +89,25 @@ forecast-studio/
 ## ▶️ 3. How to Download & Run the Project
 ### Step 1 — Clone the repo
 
-git clone https://github.com/your-username/repo-name.git
+*git clone https://github.com/your-username/repo-name.git*
 
-cd repo-name
+*cd repo-name*
 
 ### Step 2 — Create a virtual environment
 
-python -m venv venv
+*python -m venv venv*
 
-source venv/bin/activate      # Mac/Linux
+*source venv/bin/activate*      # Mac/Linux
 
-venv\Scripts\activate         # Windows
+*venv\Scripts\activate*         # Windows
 
 ### Step 3 — Install dependencies
 
-pip install -r requirements.txt
+*pip install -r requirements.txt*
 
 ### Step 4 — Add the dataset
 
-Download the Store Item Demand Forecasting dataset from Kaggle and place:
+**Download the Store Item Demand Forecasting dataset from Kaggle and place:**
 
 train.csv → data/raw/train.csv
 
@@ -115,7 +115,7 @@ test.csv  → data/raw/test.csv
 
 ### Step 5 — Generate features
 
-python -m src.features.make_features
+*python -m src.features.make_features*
 
 
 This will output:
@@ -126,44 +126,44 @@ data/processed/test_features.parquet
 
 ### Step 6 — Train the model
 
-CatBoost (best-performing):
+**CatBoost (best-performing):**
 
-python -m src.models.train_catboost
+*python -m src.models.train_catboost*
 
 
-LightGBM (baseline):
+**LightGBM (baseline):**
 
-python -m src.models.train_baseline
+*python -m src.models.train_baseline*
 
 ### Step 7 — Run rolling backtests
 
-CatBoost:
+**CatBoost:**
 
-python -m src.eval.backtest_catboost
+*python -m src.eval.backtest_catboost*
 
 
-LightGBM:
+**LightGBM:**
 
-python -m src.eval.backtest
+*python -m src.eval.backtest*
 
 
 Backtest results appear in reports/.
 
 ### Step 8 — Generate predictions (batch inference)
 
-python -m src.models.predict_catboost \
+*python -m src.models.predict_catboost* \
 
-  --model-path models/catboost_baseline.pkl \
+  *--model-path models/catboost_baseline.pkl* \
   
-  --input-path data/processed/test_features.parquet \
+  *--input-path data/processed/test_features.parquet* \
   
-  --output-path reports/predictions.csv
+  *--output-path reports/predictions.csv*
 
 ### 🐳 4. Running the Project with Docker
 
 Build the Docker image
 
-docker build -t store-forecast .
+*docker build -t store-forecast .*
 
 
 Run predictions inside Docker
@@ -189,28 +189,26 @@ the CLI works like a native tool inside Docker.
 Average performance across multiple backtest windows:
 
 
-Model	MAE (avg)	RMSE (avg)
+Model,	MAE (avg),	RMSE (avg)
 
-CatBoost	~4.08	~5.30
+CatBoost,	~4.08,	~5.30
 
-LightGBM	~4.11	~5.33
+LightGBM,	~4.11,	~5.33
 
-Naive-7	~6.7–9.0	higher
+Naive-7,	~6.7–9.0	higher
 
-Naive-28	~7.0–10	higher
+Naive-28,	~7.0–10	higher
 
 
 The model consistently outperforms:
 
-naive-1 baseline
-
-weekly seasonal naive (lag 7)
-
-monthly seasonal naive (lag 28)
+- naive-1 baseline
+- weekly seasonal naive (lag 7)
+- monthly seasonal naive (lag 28)
 
 This confirms strong and stable forecasting behavior.
 
-🧩 6. Key Features of This Project
+## 🧩 6. Key Features of This Project
 
 ✔ Pandera schemas for robust data validation
 
@@ -232,34 +230,17 @@ This confirms strong and stable forecasting behavior.
 
 ✔ Strong modular design for extensibility
 
-🧭 7. Future Improvements (Roadmap)
+## 🧭 7. Future Improvements (Roadmap)
 
-Add Prophet or ARIMA models
+- Add hyperparameter tuning (Optuna or Ray Tune)
+- Deploy a FastAPI prediction server
+- Push Docker image to GitHub Container Registry
+- Build a Streamlit dashboard for visualizing forecasts
 
-Add hyperparameter tuning (Optuna or Ray Tune)
+## 👨‍💻 8. Author
 
-Deploy a FastAPI prediction server
+Created by: Rheanna Pena
 
-Push Docker image to GitHub Container Registry
+[GitHub](https://github.com/rjgallego)
 
-Build a Streamlit dashboard for visualizing forecasts
-
-👨‍💻 8. Author
-
-Feel free to customize this part with your name and links:
-
-Created by: <Your Name>
-GitHub: <your profile>
-LinkedIn: <your profile>
-
-
-If you'd like, I can also:
-
-🔥 Generate a diagram for your pipeline (Mermaid or PNG)
-🔥 Add badges (Python version, Docker, license, build status)
-🔥 Improve the README formatting with icons
-🔥 Help you write a short “portfolio summary” for job applications
-
-Would you like to enhance the README further?
-
-ChatGPT can make mistakes. Check importan
+[LinkedIn](https://www.linkedin.com/in/rheanna-pena-aa0007110/)
